@@ -17,18 +17,18 @@ TOKEN = "7923287286:AAEBSTz-dO4ns-tPxHXr-eA88hUPxk3N0UA"
 
 # HTML-контент вашего приложения
 def get_app_html():
-    with open('app/index.html', 'r', encoding='utf-8') as f:
+    with open('index.html', 'r', encoding='utf-8') as f:
         html_content = f.read()
     
     # Заменяем пути к CSS и JS на правильные
     html_content = html_content.replace(
         '<link rel="stylesheet" href="styles.css">',
-        f'<style>\n{open("app/styles.css", "r", encoding="utf-8").read()}\n</style>'
+        f'<style>\n{open("styles.css", "r", encoding="utf-8").read()}\n</style>'
     )
     
     html_content = html_content.replace(
         '<script src="app.js"></script>',
-        f'<script>\n{open("app/app.js", "r", encoding="utf-8").read()}\n</script>'
+        f'<script>\n{open("app.js", "r", encoding="utf-8").read()}\n</script>'
     )
     
     return html_content
