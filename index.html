@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarsCase - Демо приложение кейсов</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <div class="app-title">StarsCase Демо</div>
+            <div class="balance-display">100.4 ⭐</div>
+        </div>
+        
+        <!-- Главная страница -->
+        <div id="home-page" class="page active">
+            <div class="profile-card">
+                <div class="user-info">
+                    <div class="avatar" id="user-avatar">
+                        <div class="avatar-placeholder">👤</div>
+                    </div>
+                    <div class="user-details">
+                        <div class="username" id="user-username">Демо пользователь</div>
+                        <div class="user-id" id="user-id">ID: 123456789</div>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-value">100</div>
+                        <div class="stat-label">ЗВЁЗДЫ</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">РЕФЕРАЛЫ</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎒</div>
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">ПРЕДМЕТЫ</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎁</div>
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">КЕЙСЫ</div>
+                    </div>
+                </div>
+                
+                <div class="daily-bonus">
+                    <div class="bonus-header">
+                        <div class="bonus-title">Ежедневный бонус</div>
+                        <div class="bonus-status available">Доступен</div>
+                    </div>
+                    <button class="bonus-btn" id="daily-gift-btn">Получить +10 ⭐</button>
+                </div>
+            </div>
+            
+            <div class="section-header">
+                <h2>Популярные кейсы</h2>
+                <div class="view-all" id="view-all-cases">Все</div>
+            </div>
+            
+            <div class="case-grid">
+                <div class="case-card limited" data-case="limited">
+                    <div class="case-badge">LIMITED</div>
+                    <div class="case-icon">🎯</div>
+                    <div class="case-name">ЛИМИТИРОВАННЫЙ</div>
+                    <div class="case-count">2</div>
+                    <div class="case-timer" id="limited-timer">2Д 04:49:12</div>
+                </div>
+                
+                <div class="case-card" data-case="sweet">
+                    <div class="case-icon">🍬</div>
+                    <div class="case-name">Сладость или Гадость</div>
+                    <div class="case-count">25</div>
+                </div>
+                
+                <div class="case-card" data-case="peach">
+                    <div class="case-icon">🍑</div>
+                    <div class="case-name">Персик или Шавель</div>
+                    <div class="case-count">35</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Страница кейсов -->
+        <div id="cases-page" class="page">
+            <div class="section-header">
+                <h2>Кейсы</h2>
+            </div>
+            
+            <div class="case-grid">
+                <div class="case-card limited" data-case="limited">
+                    <div class="case-badge">LIMITED</div>
+                    <div class="case-icon">🎯</div>
+                    <div class="case-name">ЛИМИТИРОВАННЫЙ</div>
+                    <div class="case-count">2</div>
+                    <div class="case-timer">2Д 04:49:12</div>
+                </div>
+                
+                <div class="case-card" data-case="sweet">
+                    <div class="case-icon">🍬</div>
+                    <div class="case-name">Сладость или Гадость</div>
+                    <div class="case-count">25</div>
+                </div>
+                
+                <div class="case-card" data-case="referral">
+                    <div class="case-icon">👥</div>
+                    <div class="case-name">Реферальный кейс</div>
+                    <div class="case-count">0</div>
+                </div>
+                
+                <div class="case-card" data-case="tiktok">
+                    <div class="case-icon">📱</div>
+                    <div class="case-name">ТИКТОКЕРСКИЙ</div>
+                    <div class="case-count">0</div>
+                </div>
+                
+                <div class="case-card" data-case="regular">
+                    <div class="case-icon">📦</div>
+                    <div class="case-name">Обычный кейс</div>
+                    <div class="case-count">25</div>
+                </div>
+                
+                <div class="case-card" data-case="peach">
+                    <div class="case-icon">🍑</div>
+                    <div class="case-name">Персик или Шавель</div>
+                    <div class="case-count">35</div>
+                </div>
+                
+                <div class="case-card" data-case="all">
+                    <div class="case-icon">🎲</div>
+                    <div class="case-name">Все или ничего</div>
+                    <div class="case-count">50</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Страница SPIN -->
+        <div id="spin-page" class="page">
+            <div class="section-header">
+                <h2>Колесо удачи</h2>
+            </div>
+            
+            <div class="spin-container">
+                <div class="spin-wheel" id="spin-wheel">
+                    <div class="spin-pointer"></div>
+                    <div class="spin-center"></div>
+                </div>
+                
+                <div class="spin-controls">
+                    <button class="spin-btn" id="spin-btn">Крутить за 10 ⭐</button>
+                </div>
+            </div>
+            
+            <div class="recent-wins">
+                <h3>Последние выигрыши</h3>
+                <div class="win-list">
+                    <div class="win-item">
+                        <div class="win-user">@demo_user1</div>
+                        <div class="win-prize">50 ⭐</div>
+                        <div class="win-time">2 мин назад</div>
+                    </div>
+                    <div class="win-item">
+                        <div class="win-user">@demo_user2</div>
+                        <div class="win-prize">Кейс "Все или ничего"</div>
+                        <div class="win-time">5 мин назад</div>
+                    </div>
+                    <div class="win-item">
+                        <div class="win-user">@demo_user3</div>
+                        <div class="win-prize">100 ⭐</div>
+                        <div class="win-time">10 мин назад</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Страница игр -->
+        <div id="games-page" class="page">
+            <div class="section-header">
+                <h2>Игры</h2>
+            </div>
+            
+            <div class="games-container">
+                <div class="game-card" data-game="coin">
+                    <div class="game-header">
+                        <div class="game-icon">🪙</div>
+                        <div class="game-info">
+                            <div class="game-name">Орёл и Решка</div>
+                            <div class="game-stakes">10–1000 ⭐</div>
+                        </div>
+                    </div>
+                    <div class="game-action">
+                        <button class="play-btn" id="play-coin-game">Играть</button>
+                    </div>
+                </div>
+                
+                <div class="game-card" data-game="labuba">
+                    <div class="game-header">
+                        <div class="game-icon">🔍</div>
+                        <div class="game-info">
+                            <div class="game-name">Где ЛАБУБА?</div>
+                            <div class="game-stakes">10–1000 ⭐</div>
+                        </div>
+                    </div>
+                    <div class="game-action">
+                        <button class="play-btn" id="play-labuba-game">Играть</button>
+                    </div>
+                </div>
+                
+                <div class="game-card" data-game="dice">
+                    <div class="game-header">
+                        <div class="game-icon">🎲</div>
+                        <div class="game-info">
+                            <div class="game-name">Кости</div>
+                            <div class="game-stakes">20–500 ⭐</div>
+                        </div>
+                    </div>
+                    <div class="game-action">
+                        <button class="play-btn" id="play-dice-game">Играть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Страница улучшений -->
+        <div id="upgrade-page" class="page">
+            <div class="section-header">
+                <h2>Улучшения</h2>
+            </div>
+            
+            <div class="upgrades-list">
+                <div class="upgrade-item">
+                    <div class="upgrade-info">
+                        <div class="upgrade-name">Увеличение шанса выпадения</div>
+                        <div class="upgrade-desc">Повышает шанс получения редких предметов на 5%</div>
+                    </div>
+                    <div class="upgrade-price">100 ⭐</div>
+                    <button class="buy-btn" data-upgrade="chance">Купить</button>
+                </div>
+                
+                <div class="upgrade-item">
+                    <div class="upgrade-info">
+                        <div class="upgrade-name">Дополнительный кейс в день</div>
+                        <div class="upgrade-desc">Открывайте на 1 кейс больше каждый день</div>
+                    </div>
+                    <div class="upgrade-price">250 ⭐</div>
+                    <button class="buy-btn" data-upgrade="extra-case">Купить</button>
+                </div>
+                
+                <div class="upgrade-item">
+                    <div class="upgrade-info">
+                        <div class="upgrade-name">Премиум подписка</div>
+                        <div class="upgrade-desc">Эксклюзивные кейсы и предметы каждый месяц</div>
+                    </div>
+                    <div class="upgrade-price">500 ⭐/мес</div>
+                    <button class="buy-btn" data-upgrade="premium">Купить</button>
+                </div>
+                
+                <div class="upgrade-item">
+                    <div class="upgrade-info">
+                        <div class="upgrade-name">Ускоренное получение наград</div>
+                        <div class="upgrade-desc">Сокращает время получения ежедневных наград</div>
+                    </div>
+                    <div class="upgrade-price">150 ⭐</div>
+                    <button class="buy-btn" data-upgrade="faster-rewards">Купить</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Страница инвентаря -->
+        <div id="inventory-page" class="page">
+            <div class="section-header">
+                <h2>Инвентарь</h2>
+            </div>
+            
+            <div class="inventory-controls">
+                <div class="mode-toggle" id="mode-toggle">
+                    <div class="toggle-option active" data-mode="all">Все</div>
+                    <div class="toggle-option" data-mode="demo">Демо</div>
+                    <div class="toggle-option" data-mode="owned">Мои</div>
+                </div>
+                
+                <div class="sort-options" id="sort-options">
+                    <div class="sort-option active" data-sort="default">По умолчанию</div>
+                    <div class="sort-option" data-sort="price-asc">По цене ↑</div>
+                    <div class="sort-option" data-sort="price-desc">По цене ↓</div>
+                </div>
+            </div>
+            
+            <div class="inventory-list" id="inventory-list">
+                <!-- Инвентарь загружается через JS -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Модальное окно для открытия кейса -->
+    <div id="case-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modal-case-name">Открытие кейса</div>
+                <div class="modal-close" id="close-case-modal">×</div>
+            </div>
+            <div class="case-animation-container">
+                <div class="case-items-scroll" id="case-items-scroll">
+                    <!-- Предметы будут добавляться динамически -->
+                </div>
+            </div>
+            <div class="won-item-container">
+                <div class="won-item-label">Ваш выигрыш:</div>
+                <div class="won-item" id="won-item">???</div>
+            </div>
+            <div class="modal-time" id="modal-open-time"></div>
+            <button class="modal-action-btn" id="collect-btn">Забрать награду</button>
+            <button class="modal-action-btn secondary" id="open-another-btn">Открыть еще один</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно для игры Орёл и Решка -->
+    <div id="coin-game-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Орёл и Решка</div>
+                <div class="modal-close" id="close-coin-modal">×</div>
+            </div>
+            
+            <div class="coin-game-container">
+                <div class="coin" id="coin">
+                    <div class="coin-front">🦅</div>
+                    <div class="coin-back">🪙</div>
+                </div>
+                
+                <div class="bet-controls">
+                    <div class="bet-amount">
+                        <label for="bet-input">Ставка (⭐):</label>
+                        <input type="number" id="bet-input" min="10" max="1000" value="10">
+                        <div class="bet-control-buttons">
+                            <button class="bet-control-btn" data-action="minus">-10</button>
+                            <button class="bet-control-btn" data-action="plus">+10</button>
+                            <button class="bet-control-btn" data-action="half">½</button>
+                            <button class="bet-control-btn" data-action="max">MAX</button>
+                        </div>
+                    </div>
+                    
+                    <div class="coin-buttons">
+                        <button class="coin-btn eagle" data-choice="eagle">🦅 Орёл</button>
+                        <button class="coin-btn tails" data-choice="tails">🪙 Решка</button>
+                    </div>
+                </div>
+                
+                <div class="game-result" id="coin-game-result">
+                    Сделайте ставку и выберите сторону!
+                </div>
+                
+                <div class="game-stats">
+                    <div class="stat-item">
+                        <span>Баланс:</span>
+                        <span class="stat-value" id="game-balance">100 ⭐</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Побед:</span>
+                        <span class="stat-value" id="game-wins">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Поражений:</span>
+                        <span class="stat-value" id="game-losses">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="modal-action-btn" id="close-coin-btn">Выйти из игры</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно для уведомлений -->
+    <div id="notification-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Уведомление</div>
+                <div class="modal-close" id="close-notification-modal">×</div>
+            </div>
+            <div class="notification-content" id="notification-content">
+                <!-- Контент уведомления -->
+            </div>
+            <button class="modal-action-btn" id="ok-notification-btn">OK</button>
+        </div>
+    </div>
+
+    <!-- Нижняя навигация -->
+    <div class="nav-bottom">
+        <div class="nav-item active" data-page="home-page">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-label">Главная</div>
+        </div>
+        <div class="nav-item" data-page="cases-page">
+            <div class="nav-icon">🎁</div>
+            <div class="nav-label">Кейсы</div>
+        </div>
+        <div class="nav-item" data-page="spin-page">
+            <div class="nav-icon">🎰</div>
+            <div class="nav-label">SPIN</div>
+        </div>
+        <div class="nav-item" data-page="games-page">
+            <div class="nav-icon">🎮</div>
+            <div class="nav-label">Игры</div>
+        </div>
+        <div class="nav-item" data-page="upgrade-page">
+            <div class="nav-icon">⬆️</div>
+            <div class="nav-label">Улучшения</div>
+        </div>
+        <div class="nav-item" data-page="inventory-page">
+            <div class="nav-icon">🎒</div>
+            <div class="nav-label">Инвентарь</div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
